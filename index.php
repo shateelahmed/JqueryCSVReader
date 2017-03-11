@@ -87,7 +87,7 @@
                                 '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
                                 'This browser does not support HTML5.'+
                             '</div>'
-                        ).fadeOut(10000);
+                        );
                         $("#submitButton").hide();
                         $("#output").empty();
                     }
@@ -97,7 +97,7 @@
                             '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
                             '<strong>Alert!</strong> Please upload a valid CSV file.'+
                         '</div>'
-                    ).fadeOut(10000);
+                    );
                     $("#submitButton").hide();
                     $("#output").empty();
                 }
