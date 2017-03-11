@@ -25,6 +25,9 @@
     </style>
 </head>
 <body>
+    <div class="alert-container" id="alert-container">
+        
+    </div>
     <form action="">
         <label class="btn btn-primary btn-lg btn-file" id="selectCSVButton">
             Click Here to Select a CSV<input type="file" name="CSVToUpload" id="CSVToUpload" class="hidden">
@@ -56,6 +59,7 @@
 
                         var reader = new FileReader();
                         reader.onload = function (e) {
+                            $("#alert-container").empty(); //removing any previous alert
 
                             var rows = e.target.result.split("\n"); //splitting rows based on new line
                             var headers = rows[0].split(","); //this is for splitting the columns of the first row containing the headers
@@ -78,14 +82,24 @@
                         }
                         reader.readAsText($("#CSVToUpload")[0].files[0]);
                     } else {
+                        $("#alert-container").html(
+                            '<div class="alert alert-danger" role="alert">'+
+                                '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+                                'This browser does not support HTML5.'+
+                            '</div>'
+                        ).fadeOut(10000);
                         $("#submitButton").hide();
                         $("#output").empty();
-                        alert("This browser does not support HTML5.");
                     }
                 } else {
+                    $("#alert-container").html(
+                        '<div class="alert alert-danger alert-dismissible" role="alert">'+
+                            '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+                            '<strong>Alert!</strong> Please upload a valid CSV file.'+
+                        '</div>'
+                    ).fadeOut(10000);
                     $("#submitButton").hide();
                     $("#output").empty();
-                    alert("Please upload a valid CSV file.");
                 }
             });
         });
